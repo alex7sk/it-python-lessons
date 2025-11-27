@@ -11,7 +11,7 @@ def register_patient(request):
         patient = Patient.objects.create(name=name, age=age, gender=gender)  # Создаем новый объект Patient с указанными значениями
         return redirect('health_record', patient_id=patient.id)  # Перенаправляем пользователя на страницу 'health_record' с идентификатором созданного пациента
 
-    return render(request, 'register_patient.html')  # Отображаем шаблон 'register_patient.html'
+    return render(request, 'patients/register_patient.html')  # Отображаем шаблон 'register_patient.html'
 
 
 def health_record(request, patient_id):
@@ -25,4 +25,4 @@ def health_record(request, patient_id):
 
     records = HealthRecord.objects.filter(patient=patient)  # Получаем все записи HealthRecord, связанные с указанным пациентом
     context = {'patient': patient, 'records': records}  # Создаем контекст для передачи данных в шаблон
-    return render(request, 'health_record.html', context)  # Отображаем шаблон 'health_record.html' с переданным контекстом
+    return render(request, 'patients/health_record.html', context)  # Отображаем шаблон 'health_record.html' с переданным контекстом
